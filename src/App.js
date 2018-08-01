@@ -6,13 +6,30 @@ import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 
 class BooksApp extends React.Component {
-  state = {};
+  state = {
+    books: []
+  };
+
+  componentDidMount() {
+    BooksAPI.getAll()
+    .then(result => {
+      this.setState({books: result})
+    })
+  }
 
   render() {
     return (
       <div className="app">
-        <Route exact path="/" render={() => <BookShelves />} />
-        <Route path="/search" render={({ history }) => (<SearchPage />)} />
+        <Route 
+          exact path="/" 
+          render={() => <BookShelves 
+            books={this.state.books}
+          />} 
+        />
+        <Route 
+          path="/search" 
+          render={() => (<SearchPage />)} 
+        />
       </div>
     );
   }
