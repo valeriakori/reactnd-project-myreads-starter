@@ -17,11 +17,11 @@ class SearchPage extends Component {
   searchBook = () => {
 
     if (this.state.query) {
-      //let query = new RegExp(escapeRegExp(this.state.query), 'i')
+      let trimmedQuery = this.state.query.trim()
 
-      //console.log(query)
+      console.log(trimmedQuery)
 
-      BooksAPI.search(this.state.query)
+      BooksAPI.search(trimmedQuery)
       .then(foundBooks => {
         if (foundBooks.length) {
           this.setState({ showingBooks: foundBooks });
