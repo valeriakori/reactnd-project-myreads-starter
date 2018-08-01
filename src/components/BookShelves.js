@@ -5,7 +5,7 @@ import Book from './Book'
 class BookShelves extends Component {
   
   render() {
-    console.log(this.props.books)
+    //console.log(this.props.books)
 
     return (
       <div className="list-books">
@@ -19,24 +19,34 @@ class BookShelves extends Component {
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                <Book  />
+                {this.props.books
+                  .filter((book) => book.shelf === 'currentlyReading')
+                  .map((book) => <Book key={book.id} book={book} />)}
                 </ol>
               </div>
             </div>
 
-            {/* <div className="bookshelf">
+            <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <ol className="books-grid" />
+                <ol className="books-grid"> 
+                {this.props.books
+                  .filter((book) => book.shelf === 'wantToRead')
+                  .map((book) => <Book key={book.id} book={book} />)}
+                </ol>
               </div>
             </div>
 
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <ol className="books-grid" />
+                <ol className="books-grid"> 
+                {this.props.books
+                  .filter((book) => book.shelf === 'read')
+                  .map((book) => <Book key={book.id} book={book} />)}
+                </ol>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
         
