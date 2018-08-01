@@ -11,14 +11,18 @@ class SearchPage extends Component {
   };
 
   updateQuery = query => {
-    this.setState({ query: query.trim() }, this.searchBook);
+    this.setState({ query: query }, this.searchBook);
   };
 
   searchBook = () => {
 
     if (this.state.query) {
+      let query = new RegExp(escapeRegExp(this.state.query), 'i')
 
-      BooksAPI.search(this.state.query).then(foundBooks => {
+      console.log(query)
+
+      BooksAPI.search(query)
+      .then(foundBooks => {
         if (foundBooks.length) {
           this.setState({ showingBooks: foundBooks });
         } else {
