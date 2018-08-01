@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
 class Book extends Component {
-
   render() {
-
-    console.log(this.props.book)
-
     return (
       <li>
         <div className="book">
@@ -23,9 +19,7 @@ class Book extends Component {
                 <option value="move" disabled>
                   Move to...
                 </option>
-                <option value="currentlyReading">
-                  Currently Reading
-                </option>
+                <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
                 <option value="none">None</option>
@@ -33,7 +27,9 @@ class Book extends Component {
             </div>
           </div>
           <div className="book-title">{this.props.book.title}</div>
-          <div className="book-authors">{this.props.book.authors.join(' & ')}</div>
+          <div className="book-authors">
+            {this.props.book.authors.join(" & ")}
+          </div>
         </div>
       </li>
     );
