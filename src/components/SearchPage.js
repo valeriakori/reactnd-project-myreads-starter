@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import escapeRegExp from "escape-string-regexp";
-//import sortBy from "sort-by";
 import Book from './Book'
 import * as BooksAPI from "../BooksAPI";
 
@@ -33,11 +32,8 @@ class SearchPage extends Component {
   render() {
 
     const { query, showingBooks } = this.state
-    //let  = this.state
 
-    
-    showingBooks.sort((sortBy('title')))
-    return (
+      return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to="/">
