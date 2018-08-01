@@ -19,7 +19,7 @@ class SearchPage extends Component {
     if (this.state.query) {
       let trimmedQuery = this.state.query.trim()
 
-      console.log(trimmedQuery)
+      console.log(this.props.allBooks)
 
       BooksAPI.search(trimmedQuery)
       .then(foundBooks => {
