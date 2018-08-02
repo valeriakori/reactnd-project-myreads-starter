@@ -16,7 +16,18 @@ class SearchPage extends Component {
   searchBook = () => {
     if (this.state.query) {
       BooksAPI.search(this.state.query).then(foundBooks => {
-        if (foundBooks.length) {
+        if (foundBooks && foundBooks.length) {
+          // sB -> shelvedBook fB -> foundBook
+          foundBooks.map(fB => {
+            return this.props.allBooks.find(sB => {
+              // if (sB.id === fB.id) {
+              //   fB.shelf = sB.shelf;
+              // } else {
+              //   fB.shelf = 'none'
+              // }
+              sB.id === fB.id ? fB.shelf = sB.shelf : fB.shelf = 'none'
+            })
+          })
           this.setState({ showingBooks: foundBooks });
         } else {
           this.setState({ showingBooks: [] });
@@ -55,7 +66,13 @@ class SearchPage extends Component {
         {showingBooks.length > 0 && (
           <div className="search-books-results">
             <ol className="books-grid">
-              {showingBooks.map(book => <Book key={book.id} book={book} updateShelf={this.props.updateShelf}/>)}
+              {showingBooks.map(book => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  updateShelf={this.props.updateShelf}
+                />
+              ))}
             </ol>
           </div>
         )}
