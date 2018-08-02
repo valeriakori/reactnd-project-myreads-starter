@@ -20,14 +20,14 @@ class SearchPage extends Component {
           // sB -> shelvedBook fB -> foundBook
           foundBooks.map(fB => {
             return this.props.allBooks.find(sB => {
-              // if (sB.id === fB.id) {
-              //   fB.shelf = sB.shelf;
-              // } else {
-              //   fB.shelf = 'none'
-              // }
-              sB.id === fB.id ? fB.shelf = sB.shelf : fB.shelf = 'none'
-            })
-          })
+              if (sB.id === fB.id) {
+                fB.shelf = sB.shelf
+                return fB;
+              } else {
+                fB.shelf = 'none'
+              }
+            });
+          });
           this.setState({ showingBooks: foundBooks });
         } else {
           this.setState({ showingBooks: [] });
