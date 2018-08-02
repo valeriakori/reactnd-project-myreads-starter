@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Book from './Book'
 
-class BookShelves extends Component {
+class BookShelfs extends Component {
   
   render() {
     //console.log(this.props.books)
@@ -58,4 +58,4 @@ class BookShelves extends Component {
   }
 }
 
-export default BookShelves;
+export default BookShelfs;
