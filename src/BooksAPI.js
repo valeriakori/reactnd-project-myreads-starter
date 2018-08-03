@@ -17,11 +17,13 @@ export const get = (bookId) =>
     .then(res => res.json())
     .then(data => data.book)
 
+    //Fetches all books on shelf
 export const getAll = () =>
   fetch(`${api}/books`, { headers })
     .then(res => res.json())
     .then(data => data.books)
 
+    //updates book.shelf
 export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
     method: 'PUT',
