@@ -38,6 +38,13 @@ class SearchPage extends Component {
     }
   };
 
+  updateShelf = (book, target) => {
+    console.log(book, target.value)
+    BooksAPI.update(book, target.value).then(() => {
+      this.props.getBooks();
+    });
+  };
+
   render() {
     const { query, showingBooks } = this.state;
 
@@ -70,7 +77,7 @@ class SearchPage extends Component {
                 <Book
                   key={book.id}
                   book={book}
-                  updateShelf={this.props.updateShelf}
+                  updateShelf={this.updateShelf}
                 />
               ))}
             </ol>
