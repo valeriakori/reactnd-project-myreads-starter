@@ -39,7 +39,6 @@ class SearchPage extends Component {
   };
 
   updateShelf = (book, target) => {
-    console.log(book, target.value)
     BooksAPI.update(book, target.value).then(() => {
       this.props.getBooks();
     });
