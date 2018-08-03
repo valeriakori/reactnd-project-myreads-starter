@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 class Book extends Component {
   render() {
+    let image;
+    this.props.book.imageLinks
+      ? (image = this.props.book.imageLinks.thumbnail)
+      : (image = "../icons/No_image_available.svg");
     return (
       <li>
         <div className="book">
@@ -12,27 +16,17 @@ class Book extends Component {
                 style={{
                   width: 128,
                   height: 193,
-                  backgroundImage: `url(${
-                    this.props.book.imageLinks.thumbnail
-                  })`
-                }}
-              />
-            )}
-            {!this.props.book.imageLinks && (
-              <div
-                className="book-cover"
-                style={{
-                  width: 128,
-                  height: 193,
-                  backgroundImage: `url(${"../icons/No_image_available.svg"})`
+                  backgroundImage: `url(${image})`
                 }}
               />
             )}
 
             <div className="book-shelf-changer">
               <select
-                onChange={(event) => {this.props.updateShelf(this.props.book, event.target)}}
-                value={this.props.book.shelf || 'none'}
+                onChange={event => {
+                  this.props.updateShelf(this.props.book, event.target);
+                }}
+                value={this.props.book.shelf || "none"}
               >
                 <option value="move" disabled>
                   Move to...
