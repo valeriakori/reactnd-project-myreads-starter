@@ -10,20 +10,41 @@ class BooksApp extends React.Component {
     books: []
   };
 
+  // updateShelf = (book, target) => {
+  //   console.log(book, target.value)
+  //   BooksAPI.update(book, target.value).then(() => {
+  //     BooksAPI.getAll().then(result => {
+  //       this.setState({ books: result });
+  //     });
+  //   });
+  // };
+
+  // componentDidMount() {
+  //   BooksAPI.getAll().then(result => {
+  //     this.setState({ books: result });
+  //   });
+  // }
   updateShelf = (book, target) => {
-    console.log(book, target.value)
+    console.log(book.shelf, target.value)
     BooksAPI.update(book, target.value).then(() => {
-      BooksAPI.getAll().then(result => {
-        this.setState({ books: result });
-      });
+      book.shelf = target.value
+      this.getBooks();
+      //this.render();
+      console.log(book.shelf)
+
     });
   };
 
   componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks = () => {
     BooksAPI.getAll().then(result => {
       this.setState({ books: result });
     });
   }
+
 
   render() {
     return (
@@ -35,7 +56,7 @@ class BooksApp extends React.Component {
         />
         <Route
           path="/search"
-          render={() => <SearchPage allBooks={this.state.books} updateShelf={this.updateShelf} />}
+          render={() => <SearchPage allBooks={this.state.books} getBooks={this.getBooks} />}
         />
       </div>
     );
